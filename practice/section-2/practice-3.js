@@ -29,20 +29,18 @@ function countSameElements(collection){
 			outList[i] = {name:null,summary:0};
 			for(var w = 0;w < collection.length;w++){
 				
-				if(collection[w].length != 1){
-					outList[i].name = collection[w].split('')[0];
-					outList[i].summary += collection[w].replace(/[^0-9]/ig,"");
-				}
-				
 				if(outList[i].name){
 					outList[i].summary++;
+				}else if(collection[w].length != 1){
+					outList[i].name = collection[w].split('')[0];
+					outList[i].summary += collection[w].replace(/[^0-9]/ig,"");
 				}else{
 					y++;
 					outList[i].name = collection[w];
 					outList[i].summary += y;
 				}
 				
-				if(collection[w] != collection[w+1]){
+				if(outList[i].name != collection[w+1]){
 					break;
 				}
 				
