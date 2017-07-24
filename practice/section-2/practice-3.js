@@ -1,6 +1,6 @@
 'use strict';
 
-function countSameElements(collection) {
+
 function countSameElements(collection){
 		
 		//算出输入数组有多少个不同值
@@ -32,25 +32,11 @@ function countSameElements(collection){
 			outList[i] = {name:null,summary:0};
 			for(var w = 0;w < collection.length;w++){
 				
-				if (collection[w].indexOf('[') !== -1){
-					collection[w] = getObject1(collection[w]);
-					outList[i].name = collection[w];
-					outList[i].summary = outList[i].summary+getNumber1(collection[w]);	
-				}
-				if(collection[w].indexOf(':') !== -1){
-					collection[w] = getObject2(collection[w]);
-					outList[i].name = collection[w];
-					outList[i].summary += getNumber2(collection[w]);	
-				}
-				if(collection[w].indexOf('-') !== -1){
-					collection[w] = getObject3(collection[w]);
-					outList[i].name = collection[w];
-					outList[i].summary += getNumber3(collection[w]);
+				if(collection[w].length != 1){
+					collection[w] = collection.split('')[0];
+					outList[i].count += collection[w].replace(/[^0-9]/ig,"");
 				}
 				
-				if(collection[w] == collection[w+1]){
-					continue;
-				}
 				if(outList[i].name){
 					outList[i].summary++;
 				}else{
@@ -59,6 +45,9 @@ function countSameElements(collection){
 					outList[i].summary += y;
 				}
 				
+				if(collection[w] !== collection[w+1]){
+					break;
+				}
 				
 			}
 			collection.splice(0,w+1);
