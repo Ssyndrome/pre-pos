@@ -5,13 +5,15 @@ function countSameElements(collection){
 		
 		//算出输入数组有多少个不同值
 		var res = [collection[0]];
+		var neW = [collection[0]];
 		for(var x = 1; x < collection.length; x++){
 			if (collection[x].length != 1){
-				collection[x] = collection[x].split('')[0];
+				neW[x] = collection[x].split('')[0];
+			}else{
+				neW[x] = collection[x];
 			}
-			
-			if(collection[x] != res[res.length - 1]){
-			res.push(collection[x]);
+			if(neW[x] != res[res.length - 1]){
+			res.push(neW[x]);
 			}
         }
 		
@@ -29,7 +31,7 @@ function countSameElements(collection){
 				
 				if(collection[w].length != 1){
 					outList[i].name = collection[w].split('')[0];
-					outList[i].count += collection[w].replace(/[^0-9]/ig,"");
+					outList[i].summary += collection[w].replace(/[^0-9]/ig,"");
 				}
 				
 				if(outList[i].name){
@@ -40,7 +42,7 @@ function countSameElements(collection){
 					outList[i].summary += y;
 				}
 				
-				if(collection[w] !== collection[w+1]){
+				if(collection[w] != collection[w+1]){
 					break;
 				}
 				
