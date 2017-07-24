@@ -32,16 +32,26 @@ function countSameElements(collection){
 				if(outList[i].name){
 					outList[i].summary++;
 				}else if(collection[w].length != 1){
-					outList[i].name = collection[w].split('')[0];
-					outList[i].summary += collection[w].replace(/[^0-9]/ig,"");
+					if(outList[i].name == collection[w].split('')[0]){
+						outList[i].summary += parseInt(collection[w].replace(/[^0-9]/ig,""));
+					}else if(outList[i].name != collection[w].split('')[0]){
+						outList[i].name = collection[w].split('')[0];
+						outList[i].summary += parseInt(collection[w].replace(/[^0-9]/ig,""));
+					}
 				}else{
 					y++;
 					outList[i].name = collection[w];
 					outList[i].summary += y;
 				}
 				
-				if(outList[i].name != collection[w+1]){
-					break;
+				if(collection[w+1].length != 1){
+					if(outList[i].name != collection[w+1].split('')[0]){
+						break;
+					}
+				}else{
+					if(outList[i].name != collection[w+1]){
+						break;
+					}
 				}
 				
 			}
@@ -49,4 +59,3 @@ function countSameElements(collection){
 		}
 		return outList; 
 }
-
