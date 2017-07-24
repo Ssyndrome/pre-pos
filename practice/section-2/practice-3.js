@@ -6,16 +6,11 @@ function countSameElements(collection){
 		//算出输入数组有多少个不同值
 		var res = [collection[0]];
 		for(var x = 1; x < collection.length; x++){
-			if ((collection[x].indexOf('[')) !== -1){
-				collection[x] = getObject1(collection[x]);
+			if (collection[x].length != 1){
+				collection[x] = collection[x].split('')[0];
 			}
-			if ((collection[x].indexOf(':')) !== -1){
-				collection[x] = getObject2(collection[x]);
-			}
-			if ((collection[x].indexOf('-')) !== -1){
-				collection[x] = getObject3(collection[x]);
-			}
-			if(collection[x] !== res[res.length - 1]){
+			
+			if(collection[x] != res[res.length - 1]){
 			res.push(collection[x]);
 			}
         }
@@ -33,7 +28,7 @@ function countSameElements(collection){
 			for(var w = 0;w < collection.length;w++){
 				
 				if(collection[w].length != 1){
-					collection[w] = collection.split('')[0];
+					outList[i].name = collection[w].split('')[0];
 					outList[i].count += collection[w].replace(/[^0-9]/ig,"");
 				}
 				
@@ -55,44 +50,3 @@ function countSameElements(collection){
 		return outList; 
 }
 
-//切割[]字符串中的数字
-function getNumber1(a){
-	var b = new Array;
-	var c = new Array;
-	b = a.split('[');
-	c = (b[1]).split(']');
-	return JSON.parse(c[0]);
-}
-//切割:字符串中的数字
-function getNumber2(a){
-	var b = new Array;
-	b = a.split(':');
-	return JSON.parse(b[1]);
-}
-
-//切割-字符串中的数字
-function getNumber3(a){
-	var b = new Array;
-	b = a.split('-');
-	return JSON.parse(b[1]);
-}
-//切割[]字符串中的对象
-function getObject1(a){
-	var b = new Array;
-	b = a.split('[');
-	return b[0];
-}
-//切割:字符串中的对象
-function getObject2(a){
-	var b = new Array;
-	b = a.split(':');
-	return b[0];
-}
-
-//切割-字符串中的对象
-function getObject3(a){
-	var b = new Array;
-	b = a.split('-');
-	return b[0];
-}
-}
