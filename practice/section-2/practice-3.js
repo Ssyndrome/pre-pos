@@ -31,8 +31,8 @@ function countSameElements(collection){
 		var y = 1;
 		for(var z = 0;COLLECTION[z] == COLLECTION[z+1];z++){
 			y++;
-			outList[i].key = COLLECTION[z];
-			outList[i].count = y;
+			outList[i].name = COLLECTION[z];
+			outList[i].summary = y;
 		}
 		COLLECTION.splice(0,z+1);
 	}
