@@ -15,7 +15,7 @@ function countSameElements(collection){
 		for(var q = 0;q < res.length;q++){
 			outList[q] = {};
 		}
-		console.log(res.length);
+	
 		//循环检索重复元素
 		for(var i = 0;i < res.length;i++){
 			var y = 1;
